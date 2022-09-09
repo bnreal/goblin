@@ -99,7 +99,7 @@ class _MyHomePageState extends State<MyHomePage> {
       if (rangeValues == null) return; //如果未选择做取消下载处理
       int start = rangeValues.start.toInt() - 1;
       int end = rangeValues.end.toInt();
-      for (final Link link in page.fileLinks.take(end - start)) {
+      for (final Link link in page.fileLinks.getRange(start, end)) {
         _tasks.add(Task(link.url,
             title: link.title,
             fileType: link.fileType,

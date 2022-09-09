@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:file_selector/file_selector.dart';
 import 'package:flutter/material.dart';
 
@@ -65,10 +67,16 @@ class _GoblinBottomBarState extends State<GoblinBottomBar> {
             tooltip: '文件夹设定',
             icon: const Icon(Icons.folder),
             onPressed: _onFolderSettingClicked),
-        Text(
-          dirPath,
-          style: const TextStyle(color: Colors.white),
-        ),
+        TextButton(
+            onPressed: () {
+              if (dirPath != "") {
+                Process.run("start", [dirPath], runInShell: true);
+              }
+            },
+            child: Text(
+              dirPath,
+              style: const TextStyle(color: Colors.white),
+            )),
         const Spacer(),
         IconButton(
             tooltip: toolTipTitle + Global.charsForReplace.toString(),
